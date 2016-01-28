@@ -1,0 +1,32 @@
+<h2 class="page-header">Création d'un Mandat</h2>
+
+
+<form>
+    <div class="form-group">
+        <label for="description">Titre</label>
+        <input class="form-control" name="title" type="text" id="title" placeholder="Titre de l'article" ng-model="title">
+    </div>
+
+    <div class="form-group">
+        <label for="description">Adresse</label>
+        <input class="form-control" name="adresse" type="text" id="adresse" placeholder="adresse de l'article" ng-model="adresse">
+    </div>
+
+    <div class="form-group">
+        <label for="description"> Prix</label>
+        <input class="form-control" name="prix" type="text" id="prix" placeholder="prix de l'article" ng-model="prix">
+    </div>
+
+    <div class="form-group">
+        <label for="description"> Date de creation</label>
+        <input class="form-control" name="date_creation" type="text" id="date_creation" placeholder="date creation de l'article" ng-model="date_creation">
+    </div>
+
+    <div class="form-group">
+        <label for="description">Date de fin de validité</label>
+        <input class="form-control" name="date_creation_fin" type="text" id="date_creation_fin" placeholder="Date de fin de validitéde l'article" ng-model="date_creation_fin">
+    </div>
+
+    <button type="submit" class="btn btn-primary pull-right" ng-click="addMandat()"><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Sauvegarder</button>
+
+</form>

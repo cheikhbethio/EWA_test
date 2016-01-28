@@ -1,0 +1,25 @@
+{
+"name": "EWA_test",
+"version": "0.0.1",
+"description": "Back end EWA_test",
+
+    "devDependencies": {
+       "mocha": "*",
+       "should": ">= 0.0.1",
+       "supertest" : "0.15.x"
+    },
+
+    "dependencies": {
+
+        "express":"4.12.x",
+        "mongoose": "3.8.x",
+
+        "body-parser": "1.12.x",
+        "morgan": "1.3.*",
+        "method-override":"*",  
+        "bcrypt-nodejs" : "latest",
+        			
+        "connect-flash" : "~0.1.1", 
+        "moment":"*"
+    }
+}
