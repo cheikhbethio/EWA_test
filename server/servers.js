@@ -30,10 +30,4 @@ app.listen(port, function(){
 var db	= require('./config/db.js');
 mongoose.connect(db.url);
 
-//routes
-//require('./route/connection.js')(app, passport);
-//require('./route/user.js')(app);
 require('./route/mandat.js')(app);
-//require('./route/page.js')(app);
-//require('./route/menu.js')(app);
-//require('./route/commentaire.js')(app);
