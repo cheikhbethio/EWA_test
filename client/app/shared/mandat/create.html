@@ -1,32 +1,34 @@
 <h2 class="page-header">Création d'un Mandat</h2>
 
 
-<form>
-    <div class="form-group">
+<form name="createMandatForm" ng-submit="addMandat(createMandatForm.$valid)"  novalidate>
+
+    <div class="form-group"  ng-class="{ 'has-error' : createMandatForm.title.$invalid && !createMandatForm.title.$pristine }">
         <label for="description">Titre</label>
-        <input class="form-control" name="title" type="text" id="title" placeholder="Titre de l'article" ng-model="title">
+        <input class="form-control" name="title" type="text" id="title" placeholder="Titre de l'article" ng-model="title" ng-minlength="3" ng-maxlength="30" ng-required="true">
+          <p ng-show="createMandatForm.title.$invalid && !createMandatForm.title.$pristine" class="help-block">Le longueur du titre doit être comprise ente 3 et 30 caractères</p>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" ng-class="{ 'has-error' : createMandatForm.adresse.$invalid && !createMandatForm.adresse.$pristine }">
         <label for="description">Adresse</label>
-        <input class="form-control" name="adresse" type="text" id="adresse" placeholder="adresse de l'article" ng-model="adresse">
+        <input class="form-control" name="adresse" type="text" id="adresse" placeholder="adresse de l'article" ng-model="adresse" ng-minlength="5" ng-maxlength="100" ng-required="true">
+          <p ng-show="createMandatForm.adresse.$invalid && !createMandatForm.adresse.$pristine" class="help-block">Le longueur de l'adresse doit être comprise ente 5 et 100 caractères.</p>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" ng-class="{ 'has-error' : createMandatForm.prix.$invalid && !createMandatForm.prix.$pristine }">
         <label for="description"> Prix</label>
-        <input class="form-control" name="prix" type="text" id="prix" placeholder="prix de l'article" ng-model="prix">
+        <input class="form-control" name="prix" type="text" id="prix" placeholder="prix de l'article" ng-model="prix" ng-pattern="/^[0-9]+$/" ng-minlength="1"  ng-maxlength="1000" ng-required="true">
+        <p ng-show="createMandatForm.prix.$invalid && !createMandatForm.prix.$pristine" class="help-block">Le prix doit être des chiffres et sa longueur comprise ente 1 et 1000 caractères.</p>
     </div>
 
-    <div class="form-group">
-        <label for="description"> Date de creation</label>
-        <input class="form-control" name="date_creation" type="text" id="date_creation" placeholder="date creation de l'article" ng-model="date_creation">
-    </div>
-
-    <div class="form-group">
+    <div class="form-group" ng-class="{ 'has-error' : createMandatForm.date_creation_fin.$invalid && !createMandatForm.date_creation_fin.$pristine }">
         <label for="description">Date de fin de validité</label>
-        <input class="form-control" name="date_creation_fin" type="text" id="date_creation_fin" placeholder="Date de fin de validitéde l'article" ng-model="date_creation_fin">
+        <input class="form-control" name="date_creation_fin" type="text" id="date_creation_fin" placeholder="Date de fin de validitéde l'article" ng-model="date_creation_fin" ng-minlength="6" ng-maxlength="20" ng-required="true"  ng-pattern='/^[0,1]?\d{1}\/(([0-2]?\d{1})|([3][0,1]{1}))\/(([1]{1}[9]{1}[9]{1}\d{1})|([2-9]{1}\d{3}))$/'>
+          <p ng-show="createMandatForm.date_creation_fin.$invalid && !createMandatForm.date_creation_fin.$pristine" class="help-block">Le longueur de la date doit être comprise ente 6 et 20 caractéres.</p>          
+        <span ng-show="createMandatForm.date_creation_fin.$error.pattern"  class="help-block">la date doit être au format : MM/DD/YYYY</span>  
+        <span ng-show="compareLesDates"  class="help-block">la date de validité doit être supérieure à celle d'aujourdhui</span>
     </div>
 
-    <button type="submit" class="btn btn-primary pull-right" ng-click="addMandat()"><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Sauvegarder</button>
+    <button type="submit" class="btn btn-primary pull-right" ng-disabled="createMandatForm.$invalid"><span class="glyphicon glyphicon-save" aria-hidden="true" ></span> Sauvegarder</button>
 
 </form>

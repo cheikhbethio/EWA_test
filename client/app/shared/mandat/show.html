@@ -10,14 +10,15 @@
        Adresse : {{mandat.adresse}}
     </div>
     <div class="form-group">
-       Prix : {{mandat.prix}}
+       Prix : {{mandat.prix | currency : ""}} €
     </div>
     <div class="form-group">
-    	Date de création : {{mandat.date_creation}}
+    	Date de création : {{mandat.date_creation  |  date:'dd/MM/yyyy'}}
     </div>
 
     <div class="form-group">
-    	Date de Validité : {{mandat.tidate_validite}}
+    	Date de Validité : {{mandat.date_validite |  date:'dd/MM/yyyy'}}
     </div>
 </div>
 </div>
+{{amount | currency}}

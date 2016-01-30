@@ -1,25 +1,44 @@
 <h2 class="page-header">Edition du Mandat <i>{{mandat.title}}</i></h2>
 
 
-<form name="editMandatForm">
-    <div class="form-group">
-        <label for="description"><span class="glyphicon glyphicon-tower" aria-hidden="true"></span> Titre</label>
-        <input class="form-control" name="title" type="text" id="title" placeholder="Titre de l'article" ng-model="mandat.title" required>
-    </div>    
-    <div class="form-group">
-        <label for="description"><span class="glyphicon glyphicon-tower" aria-hidden="true"></span> Adresse</label>
-        <input class="form-control" name="adresse" type="text" id="adresse" placeholder="adresse" ng-model="mandat.adresse" required>
-    </div>
-    <div class="form-group">
-        <label for="description"><span class="glyphicon glyphicon-tower" aria-hidden="true"></span> Prix</label>
-        <input class="form-control" name="prix" type="text" id="prix" placeholder="prix" ng-model="mandat.prix" required>
-    </div>
-    <div class="form-group">
-        <label for="description"><span class="glyphicon glyphicon-tower" aria-hidden="true"></span> Date de Validité</label>
-        <input class="form-control" name="date_validite" type="text" id="date_validite" placeholder="date_validite" ng-model="mandat.date_validite" required>
+<form name="editMandatForm" ng-submit="editMandat(editMandatForm.$valid)" novalidate>
+
+   <div class="form-group"  ng-class="{ 'has-error' : editMandatForm.title.$invalid && !editMandatForm.title.$pristine }">
+
+        <label for="description">Titre</label>
+
+        <input class="form-control" name="title" type="text" id="title" placeholder="Titre de l'article" ng-model="mandat.title" ng-minlength="3" ng-maxlength="30" ng-required="true">
+          <p ng-show="editMandatForm.title.$invalid && !editMandatForm.title.$pristine" class="help-block">Le longueur du titre doit être comprise ente 3 et 30 caractères</p>
     </div>
 
-    <button class="btn btn-primary pull-right" ng-click="editMandat()"><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Sauvegarder les modifications</button>
+
+    <div class="form-group" ng-class="{ 'has-error' : editMandatForm.adresse.$invalid && !editMandatForm.adresse.$pristine }">
+
+        <label for="description">Adresse</label>
+        
+        <input class="form-control" name="adresse" type="text" id="adresse" placeholder="adresse de l'article" ng-model="mandat.adresse" ng-minlength="5" ng-maxlength="100" ng-required="true">
+
+        <p ng-show="editMandatForm.adresse.$invalid && !editMandatForm.adresse.$pristine" class="help-block">Le longueur de l'adresse doit être comprise ente 5 et 100 caractères.</p>
+    </div>
+
+    <div class="form-group" ng-class="{ 'has-error' : editMandatForm.prix.$invalid && !editMandatForm.prix.$pristine }">
+
+        <label for="description"> Prix</label>
+
+        <input class="form-control" name="prix" type="text" id="prix" placeholder="prix de l'article" ng-model="mandat.prix" ng-pattern="/^[0-9]+$/" ng-minlength="1" ng-maxlength="1000" ng-required="true">
+        <p ng-show="editMandatForm.prix.$invalid && !editMandatForm.prix.$pristine" class="help-block">Le prix doit être des chiffres et sa longueur comprise ente 1 et 1000 caractères.</p>
+    </div>
+    
+
+    <div class="form-group" ng-class="{ 'has-error' : editMandatForm.date_creation_fin.$invalid && !editMandatForm.date_creation_fin.$pristine }">
+        <label for="description">Date de fin de validité</label>
+        <input class="form-control" name="date_creation_fin" type="text" id="date_creation_fin" placeholder="Date de fin de validitéde l'article" ng-model="mandat.date_validite" ng-minlength="6" ng-maxlength="20" ng-required="true"  ng-pattern='/^[0,1]?\d{1}\/(([0-2]?\d{1})|([3][0,1]{1}))\/(([1]{1}[9]{1}[9]{1}\d{1})|([2-9]{1}\d{3}))$/'>
+          <p ng-show="editMandatForm.date_creation_fin.$invalid && !editMandatForm.date_creation_fin.$pristine" class="help-block">Le longueur de la date doit être comprise ente 6 et 20 caractéres.</p>          
+        <span ng-show="editMandatForm.date_creation_fin.$error.pattern"  class="help-block">la date doit être au format : MM/DD/YYYY</span>  
+        <span ng-show="compareLesDates"  class="help-block">la date de validité doit être supérieure à celle d'aujourdhui</span>
+    </div>
+
+    <button class="btn btn-primary pull-right"><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Sauvegarder les modifications</button>
 
 
 
